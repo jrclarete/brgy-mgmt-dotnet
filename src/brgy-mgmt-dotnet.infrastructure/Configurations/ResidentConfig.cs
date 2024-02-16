@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace brgy_mgmt_dotnet.infrastructure.ModelConfigs
+namespace brgy_mgmt_dotnet.infrastructure.Configurations
 {
     public class ResidentConfig : IEntityTypeConfiguration<Resident>
     {

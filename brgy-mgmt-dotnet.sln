@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "brgy-mgmt-dotnet.infrastruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "brgy-mgmt-dotnet.api", "src\brgy-mgmt-dotnet.api\brgy-mgmt-dotnet.api.csproj", "{211FF636-B279-4865-A391-8CC2CF7F5EB6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "brgy-mgmt-dotnet.identity", "src\brgy-mgmt-dotnet.identity\brgy-mgmt-dotnet.identity.csproj", "{B82D7A8D-8F87-4581-A491-96D24A6B4348}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{211FF636-B279-4865-A391-8CC2CF7F5EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{211FF636-B279-4865-A391-8CC2CF7F5EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211FF636-B279-4865-A391-8CC2CF7F5EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B82D7A8D-8F87-4581-A491-96D24A6B4348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82D7A8D-8F87-4581-A491-96D24A6B4348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82D7A8D-8F87-4581-A491-96D24A6B4348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82D7A8D-8F87-4581-A491-96D24A6B4348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

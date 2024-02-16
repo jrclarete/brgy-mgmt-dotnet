@@ -1,10 +1,14 @@
 using brgy_mgmt_dotnet.application;
 using brgy_mgmt_dotnet.infrastructure;
+using brgy_mgmt_dotnet.identity;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     // Add services to the container.
-    builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
+    builder.Services
+        .AddApplicationService()
+        .AddInfrastructureService(builder.Configuration)
+        .AddIdentityService(builder.Configuration);
     //builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
     builder.Services.AddControllers();
@@ -24,11 +28,8 @@ var app = builder.Build();
     }
 
     app.UseHttpsRedirection();
-
+    app.UseAuthentication();
     app.UseAuthorization();
-
     app.MapControllers();
-
     app.Run();
-
 }

@@ -8,7 +8,7 @@ namespace brgy_mgmt_dotnet.application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
             // Mapster
             var config = TypeAdapterConfig.GlobalSettings;

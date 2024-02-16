@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\brgy-mgmt-dotnet.application\brgy-mgmt-dotnet.application.csproj" />
+    <ProjectReference Include="..\brgy-mgmt-dotnet.identity\brgy-mgmt-dotnet.identity.csproj" />
     <ProjectReference Include="..\brgy-mgmt-dotnet.infrastructure\brgy-mgmt-dotnet.infrastructure.csproj" />
   </ItemGroup>
 
