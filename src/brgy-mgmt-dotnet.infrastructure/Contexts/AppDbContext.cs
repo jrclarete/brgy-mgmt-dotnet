@@ -1,5 +1,5 @@
 ﻿using brgy_mgmt_dotnet.domain.Models;
-using brgy_mgmt_dotnet.infrastructure.ModelConfigs;
+using brgy_mgmt_dotnet.infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
