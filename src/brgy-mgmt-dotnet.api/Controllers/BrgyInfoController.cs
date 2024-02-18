@@ -5,6 +5,7 @@ using brgy_mgmt_dotnet.application.Features.BrgyInfos.Queries.GetBrgyInfos;
 using brgy_mgmt_dotnet.application.Features.Residents.Commands.UpdateResident;
 using brgy_mgmt_dotnet.application.Features.Residents.Queries.GetResidents;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace brgy_mgmt_dotnet.api.Controllers
 {
     [Route("api/brgy-info")]
     [ApiController]
+    [Authorize]
     public class BrgyInfoController : ControllerBase
     {
         private readonly IMediator _mediator;
