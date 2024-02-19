@@ -10,5 +10,8 @@ namespace brgy_mgmt_dotnet.identity.Models
     public class AppUser : IdentityUser<Guid>
     {
         public int? ExternalUserId { get; set; }
+        public string CustomUsername { get; set; } = null!;
+
+        public ICollection<AppUserRole>? AppUserRoles { get; set; }
     }
 }
