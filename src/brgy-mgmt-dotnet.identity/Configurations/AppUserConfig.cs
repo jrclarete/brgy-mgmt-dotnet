@@ -15,6 +15,8 @@ namespace brgy_mgmt_dotnet.identity.Configurations
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.Property(x => x.ExternalUserId).HasColumnType("int");
+            builder.Property(x => x.CustomUsername).HasMaxLength(20).IsRequired();
+
 
             var hasher = new PasswordHasher<AppUser>();
             builder.HasData(
@@ -26,7 +28,8 @@ namespace brgy_mgmt_dotnet.identity.Configurations
                      UserName = "admin@localhost.com",
                      NormalizedUserName = "ADMIN@LOCALHOST.COM",
                      PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                     EmailConfirmed = true
+                     EmailConfirmed = true,
+                     CustomUsername = "admin"
                  }
             );
         }
