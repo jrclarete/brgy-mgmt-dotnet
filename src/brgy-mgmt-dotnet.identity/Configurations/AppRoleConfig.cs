@@ -24,6 +24,20 @@ namespace brgy_mgmt_dotnet.identity.Configurations
                      Name = "Administrator",
                      NormalizedName = "ADMINISTRATOR",
                      Description = "Administrator"
+                 },
+                 new AppRole
+                 {
+                     Id = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556"),
+                     Name = "Main_Official",
+                     NormalizedName = "MAIN_OFFICIAL",
+                     Description = "Main_Official"
+                 },
+                 new AppRole
+                 {
+                     Id = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4"),
+                     Name = "SK_Official",
+                     NormalizedName = "SK_OFFICIAL",
+                     Description = "SK_Official"
                  }
             );
         }

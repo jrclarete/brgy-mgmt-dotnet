@@ -18,12 +18,14 @@ namespace brgy_mgmt_dotnet.identity.Repositories
     public class AuthRepository : IAuthRepository
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _config;
 
-        public AuthRepository(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration config)
+        public AuthRepository(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, SignInManager<AppUser> signInManager, IConfiguration config)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _config = config;
         }
@@ -91,7 +93,7 @@ namespace brgy_mgmt_dotnet.identity.Repositories
 
         private async Task<string> GenerateToken(AppUser appUser)
         {
-            var userClaims = await _userManager.GetClaimsAsync(appUser);
+            /*var userClaims = await _userManager.GetClaimsAsync(appUser);
             var roles = await _userManager.GetRolesAsync(appUser);
 
             var roleClaims = new List<Claim>();
@@ -108,7 +110,25 @@ namespace brgy_mgmt_dotnet.identity.Repositories
                 new Claim(JwtRegisteredClaimNames.Email, appUser.Email),
             }
             .Union(userClaims)
-            .Union(roleClaims);
+            .Union(roleClaims);*/
+
+            var claims = new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, appUser.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, appUser.Email),
+            };
+
+            claims.AddRange(await _userManager.GetClaimsAsync(appUser));
+            var roles = await _userManager.GetRolesAsync(appUser);
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+
+                var identityRole = await _roleManager.FindByNameAsync(role);
+                claims.AddRange(await _roleManager.GetClaimsAsync(identityRole));
+            }
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
             var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);

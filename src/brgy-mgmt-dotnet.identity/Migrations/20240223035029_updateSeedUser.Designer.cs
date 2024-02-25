@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using brgy_mgmt_dotnet.identity.Contexts;
 
@@ -11,9 +12,11 @@ using brgy_mgmt_dotnet.identity.Contexts;
 namespace brgy_mgmt_dotnet.identity.Migrations
 {
     [DbContext(typeof(BrgyIdentityDbContext))]
-    partial class BrgyIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240223035029_updateSeedUser")]
+    partial class updateSeedUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,54 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
@@ -100,74 +151,6 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             Description = "Administrator",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556"),
-                            Description = "Main_Official",
-                            Name = "Main_Official",
-                            NormalizedName = "MAIN_OFFICIAL"
-                        },
-                        new
-                        {
-                            Id = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4"),
-                            Description = "SK_Official",
-                            Name = "SK_Official",
-                            NormalizedName = "SK_OFFICIAL"
-                        });
-                });
-
-            modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppRoleClaim", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
-                            RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
-                            RoleId = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556")
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[READ]",
-                            RoleId = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4")
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ClaimType = "BRGY_INFO",
-                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
-                            RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
                         });
                 });
 
@@ -249,76 +232,19 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d36516c-577d-439e-8ca6-7cba7eafccf3",
+                            ConcurrencyStamp = "5aac8d98-1e2f-4853-965d-5af249f9f88d",
                             CustomUsername = "admin",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
+                            ExternalUserId = 1,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIj4/CMa2mVbQizp7M1B4HD3QiLglSKVTrTo5Eur4zuXpOuhAKsed3ZKcSn1hBlPJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKRIKxTfKI9mxJR71IL2dgfDAVE+7UH4nMtaF1DeZy36DaKxftjBdWBvC4teuDjRcw==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("76361a7e-0f21-4eea-8681-a3ce26588b19"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "f65c8ae6-33d2-42e3-8e02-759c16a63939",
-                            CustomUsername = "ggn",
-                            Email = "garyn.green@localhost.com",
-                            EmailConfirmed = true,
-                            ExternalUserId = 1,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "GARYN.GREEN@LOCALHOST.COM",
-                            NormalizedUserName = "GARYN.GREEN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH1c6Sc07DveefpfbprT8YpuU5EKMsraWXAWYS7IlcLD23NWDxdPDv5n8Xl6PO6kUQ==",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "garyn.green@localhost.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("f063d4f6-34f2-4169-b01c-da053928fa2a"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b9ed2ce0-1b0c-444a-b54a-faf62ff53028",
-                            CustomUsername = "jss",
-                            Email = "jamesina.sanders@localhost.com",
-                            EmailConfirmed = true,
-                            ExternalUserId = 2,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "JAMESINA.SANDERS@LOCALHOST.COM",
-                            NormalizedUserName = "JAMESINA.SANDERS@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKr5N6kOJMaOlFhg2kaahUDBbfy0lcctS6aIIlXOqbhxlxI5EJk6pt407ddo2x3UtA==",
-                            PhoneNumberConfirmed = false,
-                            TwoFactorEnabled = false,
-                            UserName = "jamesina.sanders@localhost.com"
                         });
-                });
-
-            modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppUserClaim", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppUserRole", b =>
@@ -340,17 +266,25 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             UserId = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735"),
                             RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
-                        },
-                        new
-                        {
-                            UserId = new Guid("76361a7e-0f21-4eea-8681-a3ce26588b19"),
-                            RoleId = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556")
-                        },
-                        new
-                        {
-                            UserId = new Guid("f063d4f6-34f2-4169-b01c-da053928fa2a"),
-                            RoleId = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4")
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("brgy_mgmt_dotnet.identity.Models.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("brgy_mgmt_dotnet.identity.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -369,28 +303,6 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppRoleClaim", b =>
-                {
-                    b.HasOne("brgy_mgmt_dotnet.identity.Models.AppRole", "AppRole")
-                        .WithMany("AppRoleClaims")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppRole");
-                });
-
-            modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppUserClaim", b =>
-                {
-                    b.HasOne("brgy_mgmt_dotnet.identity.Models.AppUser", "AppUser")
-                        .WithMany("AppUserClaims")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppUserRole", b =>
@@ -414,15 +326,11 @@ namespace brgy_mgmt_dotnet.identity.Migrations
 
             modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppRole", b =>
                 {
-                    b.Navigation("AppRoleClaims");
-
                     b.Navigation("AppUserRoles");
                 });
 
             modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppUser", b =>
                 {
-                    b.Navigation("AppUserClaims");
-
                     b.Navigation("AppUserRoles");
                 });
 #pragma warning restore 612, 618

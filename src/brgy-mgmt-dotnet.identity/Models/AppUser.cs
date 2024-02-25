@@ -13,5 +13,6 @@ namespace brgy_mgmt_dotnet.identity.Models
         public string CustomUsername { get; set; } = null!;
 
         public ICollection<AppUserRole>? AppUserRoles { get; set; }
+        public ICollection<AppUserClaim>? AppUserClaims { get; set; }
     }
 }

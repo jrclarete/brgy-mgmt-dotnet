@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using brgy_mgmt_dotnet.identity.Contexts;
 
@@ -11,9 +12,11 @@ using brgy_mgmt_dotnet.identity.Contexts;
 namespace brgy_mgmt_dotnet.identity.Migrations
 {
     [DbContext(typeof(BrgyIdentityDbContext))]
-    partial class BrgyIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240223120901_addClaimsTest")]
+    partial class addClaimsTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,16 +107,16 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         new
                         {
                             Id = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556"),
-                            Description = "Main_Official",
-                            Name = "Main_Official",
-                            NormalizedName = "MAIN_OFFICIAL"
+                            Description = "Officer One",
+                            Name = "Officer One",
+                            NormalizedName = "OFFICER ONE"
                         },
                         new
                         {
                             Id = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4"),
-                            Description = "SK_Official",
-                            Name = "SK_Official",
-                            NormalizedName = "SK_OFFICIAL"
+                            Description = "Officer Two",
+                            Name = "Officer Two",
+                            NormalizedName = "OFFICER TWO"
                         });
                 });
 
@@ -144,30 +147,23 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         new
                         {
                             Id = 1,
-                            ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
+                            ClaimType = "Administrator_Role_Claim",
+                            ClaimValue = "Administrator Role Claim",
                             RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
                         },
                         new
                         {
                             Id = 2,
-                            ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
+                            ClaimType = "Officer_One_Claim",
+                            ClaimValue = "Officer One Role Claim",
                             RoleId = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556")
                         },
                         new
                         {
                             Id = 3,
-                            ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[READ]",
+                            ClaimType = "Officer_Two_Claim",
+                            ClaimValue = "Officer Two Role Claim",
                             RoleId = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4")
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ClaimType = "BRGY_INFO",
-                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
-                            RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
                         });
                 });
 
@@ -249,14 +245,14 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d36516c-577d-439e-8ca6-7cba7eafccf3",
+                            ConcurrencyStamp = "926982ee-0d3b-47f8-9f5d-5ac90b6e43e7",
                             CustomUsername = "admin",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIj4/CMa2mVbQizp7M1B4HD3QiLglSKVTrTo5Eur4zuXpOuhAKsed3ZKcSn1hBlPJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENdWuFw7CuhHFp4uS4v8o5kgZDHPc9vTsqjrQvpveMCHBHttlxEvfpCF9Rg560jyPg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
@@ -265,7 +261,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("76361a7e-0f21-4eea-8681-a3ce26588b19"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f65c8ae6-33d2-42e3-8e02-759c16a63939",
+                            ConcurrencyStamp = "9b85c7b9-7641-4515-b12e-fa5e98dbb350",
                             CustomUsername = "ggn",
                             Email = "garyn.green@localhost.com",
                             EmailConfirmed = true,
@@ -273,7 +269,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GARYN.GREEN@LOCALHOST.COM",
                             NormalizedUserName = "GARYN.GREEN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH1c6Sc07DveefpfbprT8YpuU5EKMsraWXAWYS7IlcLD23NWDxdPDv5n8Xl6PO6kUQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGJ9PdzKG+Fo0mZr+lfuyqU/rNHN92Dw4g4eVsszcleQ1rg2xE4nQGwwEtdnhtOW7Q==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "garyn.green@localhost.com"
@@ -282,7 +278,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("f063d4f6-34f2-4169-b01c-da053928fa2a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b9ed2ce0-1b0c-444a-b54a-faf62ff53028",
+                            ConcurrencyStamp = "8be3f9dc-4684-4550-94c6-b43c61984b40",
                             CustomUsername = "jss",
                             Email = "jamesina.sanders@localhost.com",
                             EmailConfirmed = true,
@@ -290,7 +286,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JAMESINA.SANDERS@LOCALHOST.COM",
                             NormalizedUserName = "JAMESINA.SANDERS@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKr5N6kOJMaOlFhg2kaahUDBbfy0lcctS6aIIlXOqbhxlxI5EJk6pt407ddo2x3UtA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBbo8h1YJejC4vislSrpGJJDmlrq17VwMMJWK+nhh0woF1MVTyEXLK7vVe5IUc5k9Q==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "jamesina.sanders@localhost.com"
@@ -319,6 +315,36 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "Administrator_User_Claim",
+                            ClaimValue = "Administrator User Claim",
+                            UserId = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "Garyn_Claim",
+                            ClaimValue = "Garyn One",
+                            UserId = new Guid("76361a7e-0f21-4eea-8681-a3ce26588b19")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "Jamesina_Claim",
+                            ClaimValue = "Jamesina Two",
+                            UserId = new Guid("f063d4f6-34f2-4169-b01c-da053928fa2a")
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "Administrator_User_Claim2",
+                            ClaimValue = "Administrator User Claim2",
+                            UserId = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735")
+                        });
                 });
 
             modelBuilder.Entity("brgy_mgmt_dotnet.identity.Models.AppUserRole", b =>
