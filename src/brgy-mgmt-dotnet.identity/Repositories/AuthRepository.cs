@@ -1,5 +1,6 @@
 ﻿using brgy_mgmt_dotnet.application.Contracts.Auth;
 using brgy_mgmt_dotnet.application.DTOs.Auth;
+using brgy_mgmt_dotnet.identity.Helper;
 using brgy_mgmt_dotnet.identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -119,7 +120,8 @@ namespace brgy_mgmt_dotnet.identity.Repositories
                 new Claim(JwtRegisteredClaimNames.Email, appUser.Email),
             };
 
-            claims.AddRange(await _userManager.GetClaimsAsync(appUser));
+            //claims.AddRange(await _userManager.GetClaimsAsync(appUser));
+            claims.AddRange(GetClaimsSeperated(await _userManager.GetClaimsAsync(appUser)));
             var roles = await _userManager.GetRolesAsync(appUser);
 
             foreach (var role in roles)
@@ -127,7 +129,8 @@ namespace brgy_mgmt_dotnet.identity.Repositories
                 claims.Add(new Claim(ClaimTypes.Role, role));
 
                 var identityRole = await _roleManager.FindByNameAsync(role);
-                claims.AddRange(await _roleManager.GetClaimsAsync(identityRole));
+                //claims.AddRange(await _roleManager.GetClaimsAsync(identityRole));
+                claims.AddRange(GetClaimsSeperated(await _roleManager.GetClaimsAsync(identityRole)));
             }
 
             var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
@@ -147,6 +150,16 @@ namespace brgy_mgmt_dotnet.identity.Repositories
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        private List<Claim> GetClaimsSeperated(IList<Claim> claims)
+        {
+            var result = new List<Claim>();
+            foreach (var claim in claims)
+            {
+                result.AddRange(claim.DeserializePermissions().Select(t => new Claim(claim.Type, t.ToString())));
+            }
+            return result;
         }
     }
 }

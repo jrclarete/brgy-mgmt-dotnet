@@ -78,9 +78,46 @@ namespace brgy_mgmt_dotnet.identity
             services.AddAuthorization(options =>
             {
                 // Claim based authorization
-                options.AddPolicy("ClaimBasedPolicy", policy =>
+                options.AddPolicy("HouseholdClaimBasedPolicy", policy =>
                 {
-                    policy.RequireClaim("Household");
+                    policy.RequireClaim("HOUSEHOLD");
+                });
+
+                options.AddPolicy("HouseholdFullControlPolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD", "DELETE", "UPDATE");
+                });
+
+                options.AddPolicy("HouseholdReadWritePolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD", "CREATE");
+                });
+
+                options.AddPolicy("HouseholdReadPolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD", "READ");
+                });
+
+
+
+                options.AddPolicy("BrgyInfoClaimBasedPolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO");
+                });
+
+                options.AddPolicy("BrgyInfoFullControlPolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO", "DELETE", "UPDATE");
+                });
+
+                options.AddPolicy("BrgyInfoReadWritePolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO", "CREATE");
+                });
+
+                options.AddPolicy("BrgyInfoReadPolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO", "READ");
                 });
             });
 

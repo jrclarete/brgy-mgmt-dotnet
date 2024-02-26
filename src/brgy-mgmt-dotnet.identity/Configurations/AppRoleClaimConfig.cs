@@ -23,28 +23,28 @@ namespace brgy_mgmt_dotnet.identity.Configurations
                     Id = 1,
                     RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47"),
                     ClaimType = "HOUSEHOLD",
-                    ClaimValue = "[CREATE,READ,UPDATE,DELETE]"
+                    ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]"
                 },
                 new AppRoleClaim
                 {
                     Id = 2,
                     RoleId = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556"),
                     ClaimType = "HOUSEHOLD",
-                    ClaimValue = "[CREATE,READ,UPDATE,DELETE]"
+                    ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]"
                 },
                 new AppRoleClaim
                 {
                     Id = 3,
                     RoleId = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4"),
                     ClaimType = "HOUSEHOLD",
-                    ClaimValue = "[READ]"
+                    ClaimValue = "[\"READ\"]"
                 },
                 new AppRoleClaim
                 {
                     Id = 4,
                     RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47"),
                     ClaimType = "BRGY_INFO",
-                    ClaimValue = "[CREATE,READ,UPDATE,DELETE]"
+                    ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]"
                 }
             );
         }
