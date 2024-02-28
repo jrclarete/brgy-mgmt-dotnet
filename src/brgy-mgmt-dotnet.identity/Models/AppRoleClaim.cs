@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace brgy_mgmt_dotnet.identity.Models
 {
-    public class AppUserRole : IdentityUserRole<Guid>
+    public class AppRoleClaim : IdentityRoleClaim<Guid>
     {
         #region Navigations
-        public AppUser? AppUser { get; set; }
         public AppRole? AppRole { get; set; }
         #endregion
     }

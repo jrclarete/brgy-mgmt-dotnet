@@ -12,5 +12,6 @@ namespace brgy_mgmt_dotnet.identity.Models
         public string? Description { get; set; }
 
         public ICollection<AppUserRole>? AppUserRoles { get; set; }
+        public ICollection<AppRoleClaim>? AppRoleClaims { get; set; }
     }
 }

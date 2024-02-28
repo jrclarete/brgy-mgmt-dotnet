@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using brgy_mgmt_dotnet.identity.Contexts;
 
@@ -11,9 +12,11 @@ using brgy_mgmt_dotnet.identity.Contexts;
 namespace brgy_mgmt_dotnet.identity.Migrations
 {
     [DbContext(typeof(BrgyIdentityDbContext))]
-    partial class BrgyIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240226025554_updateClaimTypeSeeding")]
+    partial class updateClaimTypeSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,14 +252,14 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9dc692e3-b72c-4a68-a383-04250ba6169f",
+                            ConcurrencyStamp = "a16a4d4b-e3a1-45b9-94de-f91f33581181",
                             CustomUsername = "admin",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGmN5hpbUypnlqoTK/vLgRjI6GdDXCWD/F6x7mlnpghkLg5pyI0pdCE5xFb3ClIIFA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJr78BiZL3Vhd8dIJuZ23a2UGxGhwav6RKcgirSe706N0uC1SxabsZGUN6MTqyxCow==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
@@ -265,7 +268,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("76361a7e-0f21-4eea-8681-a3ce26588b19"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "de7794ba-d294-442a-861d-3a8f870ffa69",
+                            ConcurrencyStamp = "31e99ff7-01d8-4dc5-8bf8-e17d247744fc",
                             CustomUsername = "ggn",
                             Email = "garyn.green@localhost.com",
                             EmailConfirmed = true,
@@ -273,7 +276,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GARYN.GREEN@LOCALHOST.COM",
                             NormalizedUserName = "GARYN.GREEN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIt+Vu37qWa0PXV//vORGjnwcwget+mZ1ElifGXV6idk6uvswnxQsNK0goSlVwPrpg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP7lBYWgvQNpu2QgU7IUepcQnGQho/1T4UyNvt3kaWyhPalDA24q4TgK48bbPKpSPA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "garyn.green@localhost.com"
@@ -282,7 +285,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("f063d4f6-34f2-4169-b01c-da053928fa2a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "47eecb4c-12ff-428f-8bb1-b4b277210d47",
+                            ConcurrencyStamp = "c1da121e-e060-4983-ab50-0ecba76fa62c",
                             CustomUsername = "jss",
                             Email = "jamesina.sanders@localhost.com",
                             EmailConfirmed = true,
@@ -290,7 +293,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JAMESINA.SANDERS@LOCALHOST.COM",
                             NormalizedUserName = "JAMESINA.SANDERS@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP2TARdmpuB8I+q5V/xit1XFdtsGCt6UhCa+Bp6pCuXKLWMLhqHQQtM9ktCTAYJDGw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEA8CRR44N337JXqT7gDp3+UxZcx2MvYrBkIKY+UFmBBqJrcxsrcfN/Vb7mf7zgu6NA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "jamesina.sanders@localhost.com"

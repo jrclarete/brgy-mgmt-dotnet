@@ -13,7 +13,7 @@ namespace brgy_mgmt_dotnet.api.Controllers
 {
     [Route("api/brgy-info")]
     [ApiController]
-    [Authorize]
+    [Authorize(Policy = "BrgyInfoClaimBasedPolicy")]
     public class BrgyInfoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -25,6 +25,7 @@ namespace brgy_mgmt_dotnet.api.Controllers
 
         // GET: api/<BrgyInfoController>
         [HttpGet]
+        [Authorize(Policy = "BrgyInfoReadPolicy")]
         public async Task<IActionResult> GetBrgyInfoAsync()
         {
             var brgyInfo = await _mediator.Send(new GetBrgyInfosQuery());
@@ -33,6 +34,7 @@ namespace brgy_mgmt_dotnet.api.Controllers
 
         // PUT api/<BrgyInfoController>/5
         [HttpPut("{id}")]
+        [Authorize(Policy = "BrgyInfoReadPolicy")]
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] UpsertBrgyInfoDto updateBrgyInfo)
         {
             if (!ModelState.IsValid)

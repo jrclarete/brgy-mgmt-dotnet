@@ -24,8 +24,30 @@ namespace brgy_mgmt_dotnet.identity
                 options.UseSqlServer(configuration.GetConnectionString("BrgyMgmtIdentityDbDevConnection"),
                 b => b.MigrationsAssembly(typeof(BrgyIdentityDbContext).Assembly.FullName)));
 
-            services.AddIdentity<AppUser, AppRole>()
-                .AddEntityFrameworkStores<BrgyIdentityDbContext>().AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, AppRole>(options => 
+            {
+                // configuration can be written here:
+                // builder.Services.Configure<IdentityOptions>
+                options.SignIn.RequireConfirmedAccount = true;
+
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 3;
+                options.Password.RequiredUniqueChars = 0;
+
+                // Lockout settings.
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+                //options.Lockout.MaxFailedAccessAttempts = 5;
+                //options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddEntityFrameworkStores<BrgyIdentityDbContext>();
 
             services.AddAuthentication(options =>
             {
@@ -40,6 +62,8 @@ namespace brgy_mgmt_dotnet.identity
                 {
                     o.TokenValidationParameters = new TokenValidationParameters
                     {
+                        ValidateActor = true,
+                        RequireExpirationTime = true,
                         ValidateIssuerSigningKey = true,
                         ValidateIssuer = true,
                         ValidateAudience = true,
@@ -50,6 +74,52 @@ namespace brgy_mgmt_dotnet.identity
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Key"]))
                     };
                 });
+
+            services.AddAuthorization(options =>
+            {
+                // Claim based authorization
+                options.AddPolicy("HouseholdClaimBasedPolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD");
+                });
+
+                options.AddPolicy("HouseholdFullControlPolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD", "DELETE", "UPDATE");
+                });
+
+                options.AddPolicy("HouseholdReadWritePolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD", "CREATE");
+                });
+
+                options.AddPolicy("HouseholdReadPolicy", policy =>
+                {
+                    policy.RequireClaim("HOUSEHOLD", "READ");
+                });
+
+
+
+                options.AddPolicy("BrgyInfoClaimBasedPolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO");
+                });
+
+                options.AddPolicy("BrgyInfoFullControlPolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO", "DELETE", "UPDATE");
+                });
+
+                options.AddPolicy("BrgyInfoReadWritePolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO", "CREATE");
+                });
+
+                options.AddPolicy("BrgyInfoReadPolicy", policy =>
+                {
+                    policy.RequireClaim("BRGY_INFO", "READ");
+                });
+            });
 
             services.AddTransient<IAuthRepository, AuthRepository>();
 

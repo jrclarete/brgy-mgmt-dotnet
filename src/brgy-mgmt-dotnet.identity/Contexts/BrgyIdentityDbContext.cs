@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace brgy_mgmt_dotnet.identity.Contexts
 {
-    public class BrgyIdentityDbContext : IdentityDbContext<AppUser, AppRole, Guid, IdentityUserClaim<Guid>, AppUserRole, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
+    public class BrgyIdentityDbContext : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, IdentityUserLogin<Guid>, AppRoleClaim, IdentityUserToken<Guid>>
     {
         public BrgyIdentityDbContext(DbContextOptions<BrgyIdentityDbContext> options) : base(options)
         {
@@ -27,6 +27,8 @@ namespace brgy_mgmt_dotnet.identity.Contexts
             new AppRoleConfig().Configure(modelBuilder.Entity<AppRole>());
             //modelBuilder.ApplyConfiguration(new AppUserRoleConfig());
             new AppUserRoleConfig().Configure(modelBuilder.Entity<AppUserRole>());
+            new AppUserClaimConfig().Configure(modelBuilder.Entity<AppUserClaim>());
+            new AppRoleClaimConfig().Configure(modelBuilder.Entity<AppRoleClaim>());
         }
     }
 }

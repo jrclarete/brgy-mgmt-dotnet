@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using brgy_mgmt_dotnet.identity.Contexts;
 
@@ -11,9 +12,11 @@ using brgy_mgmt_dotnet.identity.Contexts;
 namespace brgy_mgmt_dotnet.identity.Migrations
 {
     [DbContext(typeof(BrgyIdentityDbContext))]
-    partial class BrgyIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240225184946_updateRoleClaim")]
+    partial class updateRoleClaim
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,28 +148,28 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = 1,
                             ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]",
+                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
                             RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
                         },
                         new
                         {
                             Id = 2,
                             ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]",
+                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
                             RoleId = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556")
                         },
                         new
                         {
                             Id = 3,
                             ClaimType = "HOUSEHOLD",
-                            ClaimValue = "[\"READ\"]",
+                            ClaimValue = "[READ]",
                             RoleId = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4")
                         },
                         new
                         {
                             Id = 4,
                             ClaimType = "BRGY_INFO",
-                            ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]",
+                            ClaimValue = "[CREATE,READ,UPDATE,DELETE]",
                             RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47")
                         });
                 });
@@ -249,14 +252,14 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("1ed72e4b-d489-4c2a-9f9a-a8a29e8ef735"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9dc692e3-b72c-4a68-a383-04250ba6169f",
+                            ConcurrencyStamp = "0d36516c-577d-439e-8ca6-7cba7eafccf3",
                             CustomUsername = "admin",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGmN5hpbUypnlqoTK/vLgRjI6GdDXCWD/F6x7mlnpghkLg5pyI0pdCE5xFb3ClIIFA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIj4/CMa2mVbQizp7M1B4HD3QiLglSKVTrTo5Eur4zuXpOuhAKsed3ZKcSn1hBlPJA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
@@ -265,7 +268,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("76361a7e-0f21-4eea-8681-a3ce26588b19"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "de7794ba-d294-442a-861d-3a8f870ffa69",
+                            ConcurrencyStamp = "f65c8ae6-33d2-42e3-8e02-759c16a63939",
                             CustomUsername = "ggn",
                             Email = "garyn.green@localhost.com",
                             EmailConfirmed = true,
@@ -273,7 +276,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GARYN.GREEN@LOCALHOST.COM",
                             NormalizedUserName = "GARYN.GREEN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIt+Vu37qWa0PXV//vORGjnwcwget+mZ1ElifGXV6idk6uvswnxQsNK0goSlVwPrpg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH1c6Sc07DveefpfbprT8YpuU5EKMsraWXAWYS7IlcLD23NWDxdPDv5n8Xl6PO6kUQ==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "garyn.green@localhost.com"
@@ -282,7 +285,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                         {
                             Id = new Guid("f063d4f6-34f2-4169-b01c-da053928fa2a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "47eecb4c-12ff-428f-8bb1-b4b277210d47",
+                            ConcurrencyStamp = "b9ed2ce0-1b0c-444a-b54a-faf62ff53028",
                             CustomUsername = "jss",
                             Email = "jamesina.sanders@localhost.com",
                             EmailConfirmed = true,
@@ -290,7 +293,7 @@ namespace brgy_mgmt_dotnet.identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JAMESINA.SANDERS@LOCALHOST.COM",
                             NormalizedUserName = "JAMESINA.SANDERS@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP2TARdmpuB8I+q5V/xit1XFdtsGCt6UhCa+Bp6pCuXKLWMLhqHQQtM9ktCTAYJDGw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKr5N6kOJMaOlFhg2kaahUDBbfy0lcctS6aIIlXOqbhxlxI5EJk6pt407ddo2x3UtA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "jamesina.sanders@localhost.com"
