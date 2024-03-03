@@ -45,6 +45,27 @@ namespace brgy_mgmt_dotnet.identity.Configurations
                     RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47"),
                     ClaimType = "BRGY_INFO",
                     ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]"
+                },
+                new AppRoleClaim
+                {
+                    Id = 5,
+                    RoleId = new Guid("96445f78-7f86-4a0f-8e46-44ecf3690a47"),
+                    ClaimType = "RESIDENT",
+                    ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]"
+                },
+                new AppRoleClaim
+                {
+                    Id = 6,
+                    RoleId = new Guid("de0484d9-1201-4298-bc5d-ae1ca3392556"),
+                    ClaimType = "RESIDENT",
+                    ClaimValue = "[\"CREATE\",\"READ\",\"UPDATE\",\"DELETE\"]"
+                },
+                new AppRoleClaim
+                {
+                    Id = 7,
+                    RoleId = new Guid("b0954a50-4a88-44b1-9f80-09ca191307f4"),
+                    ClaimType = "RESIDENT",
+                    ClaimValue = "[\"READ\"]"
                 }
             );
         }
